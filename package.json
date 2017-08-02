@@ -1,0 +1,26 @@
+{
+  "name": "knova-recontributor",
+  "version": "0.0.1",
+  "description": "HTTP requests to Knova recontribute endpoint. ",
+  "main": "knova-recontributor.js",
+  "dependencies": {
+    "request": "^2.81.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johndwalker/knova-recontributor.git"
+  },
+  "keywords": [
+    "Knova"
+  ],
+  "author": "John Walker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/johndwalker/knova-recontributor/issues"
+  },
+  "homepage": "https://github.com/johndwalker/knova-recontributor#readme"
+}
