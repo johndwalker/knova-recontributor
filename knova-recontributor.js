@@ -16,7 +16,7 @@ const log4js = require('log4js');
 var Logger = require('./modules/Logger');
 const log = Logger.getLogger(argv['l']);
 
-if (argv['d']) {
+if (argv['v']) {
 	log.level = 'debug';
 }
 
@@ -79,7 +79,7 @@ exports.updateKnova = function(IDList, tokenString, callback) {
 		log.debug('id: ' + IDList[c]);
 		log.debug('url + id: ' + url);
 
-		if (argv['t']) {
+		if (argv['d']) {
 			url = 'http://www.google.com';
 		}
 
