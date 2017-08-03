@@ -9,7 +9,7 @@
  *
  * exit codes:
  *   3 - missing command line arguments
- *   8 - invalid string 
+ *   9 - invalid string, missing token
  ******************************/
 var argv = require('minimist')(process.argv.slice(2));
 const log4js = require('log4js');
@@ -120,7 +120,8 @@ writeFailedIDList = function(failedIDs, callback) {
 }
 const async = require("async");
 
-if (argv['f']) {
+if (process.argv[1].includes('knova-recontributor.js')) {
+	log.debug('process.argv[1].includes knova-recontributor');
 	async.waterfall([
 		getIDList,
 		exports.updateKnova,
@@ -132,4 +133,6 @@ if (argv['f']) {
 		log.info(result);
 		log4js.shutdown(function() { process.exit(0) });
 	});
+} else {
+	log.debug('knova-recontributor included as part of another process');
 }
