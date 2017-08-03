@@ -4,8 +4,8 @@
  * todo: help function - f => path to id list *required
  *						 l => log path
  *						 u => url with token *required
- *						 t => dry (test) run (will hit google.com)
- *						 d => debug logging
+ *						 d => dry (test) run (will hit google.com)
+ *						 v => debug logging
  *
  * exit codes:
  *   3 - missing command line arguments
