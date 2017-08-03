@@ -1,6 +1,6 @@
 {
   "name": "knova-recontributor",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "HTTP requests to Knova recontribute endpoint. ",
   "main": "knova-recontributor.js",
   "dependencies": {
