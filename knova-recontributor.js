@@ -95,8 +95,8 @@ exports.updateKnova = function(IDList, tokenString, callback) {
 
 		c++;
 		if (c >= IDList.length) {
-		  clearInterval(timeout);
-		  callback(null, failedIDs);
+			clearInterval(timeout);
+			writeFailedIDList(failedIDs, callback);
 		}
 	}, 1000); // one second interval
 }
@@ -124,8 +124,7 @@ if (process.argv[1].includes('knova-recontributor.js')) {
 	log.debug('process.argv[1].includes knova-recontributor');
 	async.waterfall([
 		getIDList,
-		exports.updateKnova,
-		writeFailedIDList
+		exports.updateKnova
 	], function (err, result) {
 		if (err) {
 			log.error(err);
