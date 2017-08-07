@@ -90,7 +90,7 @@ exports.updateKnova = function(IDList, tokenString, callback) {
 				log.error(error);
 			}
 			log.info('Success: statusCode:', response && response.statusCode); // Print the response status code if a response was received 
-			// log.debug('body:', body); // Print the HTML
+			log.debug('body:', body); // Print the HTML
 		});
 
 		c++;
