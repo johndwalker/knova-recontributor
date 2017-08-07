@@ -70,35 +70,60 @@ exports.updateKnova = function(IDList, tokenString, callback) {
 	}
 
 	var failedIDs = [];
-	var c = 0;
-	var timeout = setInterval(function() {
-		log.debug('timout c: ' + c);
-		log.debug('IDList.length: ' + IDList.length);
+	async.each(IDList, function(id, callback) {
+		setTimeout(function(){
+			var url = tokenString.replace('{id}', id);
+			log.debug('id: ' + id);
+			log.debug('url + id: ' + url);
 
-		let url = tokenString.replace('{id}', IDList[c]);
-		log.debug('id: ' + IDList[c]);
-		log.debug('url + id: ' + url);
-
-		if (argv['d']) {
-			url = 'http://www.google.com';
-		}
-
-		log.info('Attempting http request to: ' + url + '...');
-		request(url, function (error, response, body) {
-			if (error) {
-				failedIDs.push(IDList[c]);
-				log.error(error);
+			if (argv['d']) {
+				url = 'http://www.google.com';
 			}
-			log.info('Success: statusCode:', response && response.statusCode); // Print the response status code if a response was received 
-			log.debug('body:', body); // Print the HTML
-		});
 
-		c++;
-		if (c >= IDList.length) {
-			clearInterval(timeout);
-			writeFailedIDList(failedIDs, callback);
-		}
-	}, 1000); // one second interval
+			log.info('Attempting http request to: ' + url + '...');
+			request(url, function (error, response, body) {
+				if (error) {
+					failedIDs.push(id);
+					log.error(error);
+				}
+				log.info('Success: statusCode:', response && response.statusCode); // Print the response status code if a response was received 
+				log.debug('body:', body); // Print the HTML
+				callback();
+			});
+		}, 1000);
+	}, function(err) {
+		writeFailedIDList(failedIDs, callback);
+	});
+
+	// var c = 0;
+	// var timeout = setInterval(function() {
+	// 	log.debug('timout c: ' + c);
+	// 	log.debug('IDList.length: ' + IDList.length);
+
+	// 	let url = tokenString.replace('{id}', IDList[c]);
+	// 	log.debug('id: ' + IDList[c]);
+	// 	log.debug('url + id: ' + url);
+
+	// 	if (argv['d']) {
+	// 		url = 'http://www.google.com';
+	// 	}
+
+	// 	log.info('Attempting http request to: ' + url + '...');
+	// 	request(url, function (error, response, body) {
+	// 		if (error) {
+	// 			failedIDs.push(IDList[c]);
+	// 			log.error(error);
+	// 		}
+	// 		log.info('Success: statusCode:', response && response.statusCode); // Print the response status code if a response was received 
+	// 		log.debug('body:', body); // Print the HTML
+	// 	});
+
+	// 	c++;
+	// 	if (c >= IDList.length) {
+	// 		clearInterval(timeout);
+	// 		writeFailedIDList(failedIDs, callback);
+	// 	}
+	// }, 1000); // one second interval
 }
 
 writeFailedIDList = function(failedIDs, callback) {
