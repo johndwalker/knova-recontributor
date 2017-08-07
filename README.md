@@ -9,9 +9,9 @@ CLI:
 <table>
 <tr><td>f => path to id list *required</td></tr>
 <tr><td>u => url with token {id} *required</td></tr>
-<tr><td>t => dry (test) run (will hit google.com)</td></tr>
+<tr><td>d => dry (test) run (will hit google.com)</td></tr>
 <tr><td>l => log path</td></tr>
-<tr><td>d => debug logging</td></tr>
+<tr><td>v => debug logging</td></tr>
 </table>
 <br>
 Usage if you are including it as part of another project:
